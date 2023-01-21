@@ -5,10 +5,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -18,20 +22,18 @@ import org.json.simple.JSONValue;
  *
  */
 public class App {
-
-    public static void main(String[] args) throws IOException {
+    public static ArrayList<Restaurante> getRestaurantes() {
         final String ruta = "/home/carlos/repos/java/persistencia/ejemplo.json";
         File archivo = null;
         InputStream is = null;
-
+        ArrayList<Restaurante> restaurantes = new ArrayList<>();
         try {
             archivo = new File(ruta);
             is = new FileInputStream(archivo);
             JSONObject json = (JSONObject) JSONValue.parse(new InputStreamReader(is));
             JSONArray slideJson = (JSONArray) json.get("restaurante");
             Iterator<JSONObject> i = slideJson.iterator();
-            ArrayList<Restaurante> restaurantes = new ArrayList<>();
-            while (i.hasNext()) {
+           while (i.hasNext()) {
                 // Cojemos cada objeto de forma individual
                 JSONObject individual = i.next();
                 // Del objeto restaurante cojemos la direccion
@@ -82,7 +84,8 @@ public class App {
 
                 z = null;
             }
-            System.out.println(restaurantes.toString());
+
+            return restaurantes;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
@@ -94,5 +97,37 @@ public class App {
                 }
             }
         }
+        return restaurantes;
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        ArrayList<Restaurante> restaurantes = new ArrayList<>();
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("$/home/carlos/Downloads/objectdb-2.8.8/db/resenas.odb");
+    EntityManager em = emf.createEntityManager(); 
+        restaurantes = getRestaurantes();
+        em.getTransaction().begin();
+        for (Restaurante restaurante : restaurantes) {
+
+        em.persist(restaurante);
+        }
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

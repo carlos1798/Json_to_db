@@ -3,7 +3,15 @@ package com.persistencia;
 import java.time.Instant;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
+
 public class Resena {
+
+ 
 
   Date fecha;
   String nivel;
@@ -12,6 +20,7 @@ public class Resena {
   public Resena(Date fecha, String nivel, int puntuacion) {
     this.fecha = fecha;
     this.nivel = nivel;
+
     this.puntuacion = puntuacion;
   }
 

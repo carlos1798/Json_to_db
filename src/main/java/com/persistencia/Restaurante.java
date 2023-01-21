@@ -2,13 +2,20 @@ package com.persistencia;
 
 import java.util.Arrays;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Restaurante {
     String nombre;
     int restaurant_id;
-    Direccion direccion;
+    @OneToOne (cascade = CascadeType.ALL) Direccion direccion;
     String distrito;
     String cocina;
-    Resena[] resenas;
+    @OneToMany (cascade = {CascadeType.ALL}, targetEntity = Resena.class)Resena[] resenas;
+    
     public Restaurante(String nombre, int restaurant_id, Direccion direccion, String distrito, String cocina,
             Resena[] resenas) {
         this.nombre = nombre;

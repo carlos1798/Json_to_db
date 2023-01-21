@@ -1,8 +1,15 @@
 package com.persistencia;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Direccion {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Direccion{
 
     int numero;
     double[] coordenadas;
