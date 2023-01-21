@@ -67,13 +67,7 @@
             "nivel": "A",
             "puntuacion": 2
         },
-        {
-            "fecha": {
-                "$date": 1378857600000
-            },
-            "nivel": "A",
-            "puntuacion": 6
-        },
+        
         {
             "fecha": {
                 "$date": 1299715200000

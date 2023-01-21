@@ -1,14 +1,15 @@
 package com.persistencia;
 
+import java.time.Instant;
 import java.util.Date;
 
 public class Resena {
 
   Date fecha;
-  char nivel;
+  String nivel;
   int puntuacion;
 
-  public Resena(Date fecha, char nivel, int puntuacion) {
+  public Resena(Date fecha, String nivel, int puntuacion) {
     this.fecha = fecha;
     this.nivel = nivel;
     this.puntuacion = puntuacion;
@@ -22,11 +23,11 @@ public class Resena {
     this.fecha = fecha;
   }
 
-  public char getNivel() {
+  public String getNivel() {
     return nivel;
   }
 
-  public void setNivel(char nivel) {
+  public void setNivel(String nivel) {
     this.nivel = nivel;
   }
 
@@ -37,4 +38,11 @@ public class Resena {
   public void setPuntuacion(int puntuacion) {
     this.puntuacion = puntuacion;
   }
+
+@Override
+public String toString() {
+    return "Resena [fecha=" + fecha + ", nivel=" + nivel + ", puntuacion=" + puntuacion + "]";
+}
+
+  
 }
