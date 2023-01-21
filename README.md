@@ -1,6 +1,6 @@
 # JsonToDB
 
-Java example of how to pase a json file and with ObjectDB api introduce the data to the DB
+Java example of how to parse a json file and with ObjectDB persist the data
 
 
 
