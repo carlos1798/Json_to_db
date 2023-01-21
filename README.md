@@ -12,15 +12,6 @@ Service build command:
 mvn clean install
 ```
 
-
-Run command:
-
-``` sh
-mvn spring-boot:run
-```
-
-
-
 ### Test
 
 Run test command:
